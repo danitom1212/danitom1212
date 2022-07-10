@@ -71,11 +71,16 @@ def validPass(passWord):
         return 1
 
 
+
 def main(pass1):
     if pass1>=sys.argv[0]:
-        return validPass(sys.argv[0])
+        if sys.argv[1] == "-f" :
+            if(len(sys.argv[2])>=1):
+                f = open(sys.argv[2], 'r')
+                save_pass = str(f.readline());
+                validPass(save_pass)
+        else:
+            return validPass(sys.argv[1])
     else:
-        return  validPass(pass1)
+      return  validPass(pass1)
 
-
-main("addada")
