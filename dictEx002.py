@@ -9,7 +9,7 @@ newList={}
 
 for key, value in list1.items():
     newList[key] = value
-    print(key, value)
+    print(key,"-", value)
 
 print(newList)
 str2 = {}
@@ -26,9 +26,9 @@ print("final dictionary", str2)
 # !2 ex 002
 print("_____________________________________________")
 
-list1 = [1, 112, 33, 47, 5,1]
-list2 = [2, 3, 4, 6, 8]
-list3 = [11, 12, 31, 88, 59,2]
+list1 = [11, 7, 5, 37, 11,5]
+list2 = [22, 8, 10, 1, 11]
+list3 = [71, 3, 22, 8, 2,14,1]
 list4={"1L": list1,"2L" : list2, "3L" : list3}
 
 def showReturn(list):
@@ -45,6 +45,92 @@ def showReturn(list):
     else:
         print("list:" + str(list) +"There is no duplicate value!!")
         return False
+
+
+
+
+"""
+    EX 2 Home work 2
+"""
+import collections
+
+# function for checking common values
+def checkRepeatDigits(lst):
+    """
+    Check if list have repeat values
+    :param lst: list
+    :return: True/False
+    """
+    count_repeat_digit = collections.Counter(lst)
+    for k,v in count_repeat_digit.items():
+        if v > 1 :
+            return True
+    return False
+
+# function for returning common values with "and"
+def repeated_values(lst):
+    """
+    Return repeated values from list
+    :param lst: list
+    :return: repeated values
+    """
+    dict = collections.Counter(lst)
+    result = " "
+    for k,v in dict.items():
+        if v > 1:
+            result+=str(k) +" and "
+    return result
+
+
+def mainFunction (d):
+    """
+    Search only those lists that have at least one repeating organ
+    Find common values (found in all) from all the lists you found
+    in section a. If one list remains - all its organs are common,
+    if no list remains - the answer will be empty
+    :param d: dictionary
+    :return: print the results
+    """
+    #create variables
+    dict  = collections.Counter(d) # create dictionary
+    array ,true_arr= [] ,[]# create array for adding to it values
+    str_result = "" # create string for print result
+    true_counter = 0 # count arrays with common values
+
+    # main loop
+    for k,v in dict.items():
+        # if value is repeat in array print appropriate message, and +1 to true counter
+        if(checkRepeatDigits(v)==True):
+            print(f"{k} includes the values",repeated_values(v)[:-5],"more then once")
+            true_counter+=1
+        else:
+            array.append(v) # add values to array
+            str_result+= k +" and " # creating string for printing results
+
+    # checking main conditions (Part B)
+    if (true_counter==len(dict)): # all arrays have common values the answer is "empty answer"
+        print(" ")
+    if(true_counter==2):
+        # this case for case if have one list without common values
+        # according to the requirements this values must be output
+        # trim "[]"
+        print(f"list {str_result[:-5]} doesn't have common values ",str(array)[2:-2])
+
+    if (len(dict)-true_counter>1): # several arrays doesnt have common digits
+
+        res = str(set.intersection(*map(set,array)))
+        if res == 'set()':
+            print(" ")
+        else:
+            print(f"the common values (of {str_result[:-5]}) are : ",res)
+
+
+list1_n = [11, 7, 5, 37, 11,5]
+list2_n = [22, 8, 10, 1, 11]
+list3_n = [71, 3, 22, 8, 2,14,1]
+dict={"1L": list1_n,"2L" : list2_n, "3L" : list3_n}
+
+mainFunction(dict)
 
 
 def checkAll(allList):##Check the remaining strings
