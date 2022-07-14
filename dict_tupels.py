@@ -5,14 +5,16 @@ python work
 crated by:daniel tomanian
 03.07.2022
 """
-def printAllDicts(data: dict, userNum=0):
+
+
+def print_all_dicts(data: dict, userNum=0):
     """
     func:
     print from dictionary all
     Prints all the values from dictionary whose age is above the number entered,
     if the user did not enter a number prints all the values
     """
-    if userNum < 0:##if pramter num is empty
+    if userNum < 0:  # if parameter num is empty
         for key, value in data.items():
             print(key, value)
     else:
@@ -21,7 +23,6 @@ def printAllDicts(data: dict, userNum=0):
                 if k.lower() == "age":
                     if age > userNum:
                         print(key, value)
-
 
 
 def median_average(data):
@@ -40,19 +41,17 @@ def median_average(data):
                 list.append(v)
     list.sort()
     avg = avg / len(data)
-    median = statistics.median(list)##after sorted find the median
-    print("the averge >>")
-    print(avg)
-    print("the median >>")
-    print(median)
-    return avg,median
+    median = statistics.median(list)  # after sorted find the median
+    print("median : averge>>")
+
+    return avg, median
 
 
-def femaleMaleFunc(data):
+def female_male_func(data):
     """
     func:
     split dictionary by  Male or Female.
-    return male and female dictionarie
+    return male and female dictionaries
     """
     maleDict = {}
     femaleDict = {}
@@ -65,8 +64,9 @@ def femaleMaleFunc(data):
                 if v.lower().startswith("m"):
                     maleDict[key] = value
 
-    res={"Female": femaleDict, "Male": maleDict}
+    res = {"Female": femaleDict, "Male": maleDict}
     return res
+
 
 def main():
     data_set = {134232342: {"name": "Tal", "sex": "female", "age": 11},
@@ -76,27 +76,24 @@ def main():
     # 1
     print("--------------------------------------")
     print("func 1 :")
-    dictM_F = femaleMaleFunc(data_set)
+    dictM_F = female_male_func(data_set)
     print(dictM_F)
 
     print("--------------------------------------")
     # 2 find med average()
     print("\nFunc 2 ")
-    dictMedianAvg = median_average(data_set)
-    print(dictMedianAvg)
+    dict_median_avg = median_average(data_set)
+    print(dict_median_avg)
     print("--------------------------------------")
 
     # 3  check print values
     print("\nFunc3 to print all dicts")
-    printAllDicts(data_set)
+    print_all_dicts(data_set)
     print("--------------------------------------")
     # 4  check print values bigger the age=num=user input the Num
     print("\nFunc4 to print all dicts are age bigger then num")
-    printAllDicts(data_set, 23)
+    print_all_dicts(data_set, 23)
     print("--------------------------------------")
 
 
 main()
-
-
-
