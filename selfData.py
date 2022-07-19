@@ -149,6 +149,19 @@ class Date:
         final_date = pd.DateOffset(days=others)+pd.to_datetime(initial_date)
 
         return final_date
+    def get_next_day(self):
+        """
+              Add 1 days to this date
+              or user cohise(input others)
+              :param others: int
+              :return: date + others
+              """
+        import pandas as pd
+        initial_date = str(self.month) + "/" +str(self.day) + "/" + str(self.year)
+        final_date = pd.DateOffset(days=1)+pd.to_datetime(initial_date)
+
+        return final_date
+
 
 
 ##main for check the funcs
